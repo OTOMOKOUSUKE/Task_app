@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <h1 class="text-center mb-4">ニックネーム変更</h1>
+            <form method="Post">
+                <div class="form-group">
+                    <label for="taskname">ニックネーム</label>
+                    <input type="text" class="form-control mb-2" id="nickname" name="nickname" value={{ user.nickname }} placeholder="ニックネーム" required>
+                </div>
+                <input type="submit" class="btn btn-primary btn-block w-100" value="更新">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

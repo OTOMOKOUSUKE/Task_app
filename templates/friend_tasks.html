@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ friend.nickname }}さんのすべてのタスク</h1>
+
+<div class="container mt-5">
+    <div class="row">
+        {% for task in tasks %}
+            <div class="col-md-4 mb-4">
+                <div class="card sticky-note">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.taskname }}</h5>
+                        <p class="card-text">期限: {{ task.deadline }}</p>
+                        <p class="card-text">優先度: {{ task.priority }}</p>
+                        <p class="card-text">進捗: {{ task.progress }}%</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

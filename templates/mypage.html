@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>ようこそ{{ user.nickname }}さん</h1>
+<p>今日のタスク完了数：{{ user.tasks_completed_today }}</p>
+<p>今週のタスク完了数：{{ user.tasks_completed_this_week }}</p>
+
+
+<div class="container mt-5">
+    <div class="row">
+        {% for task in tasks %}
+            <div class="col-md-4 mb-4">
+                <div class="card sticky-note">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.taskname }}</h5>
+                        <p class="card-text">内容: {{ task.body }}</p>
+                        <p class="card-text">期限: {{ task.deadline }}</p>
+                        <p class="card-text">優先度: {{ task.priority }}</p>
+                        <p class="card-text">進捗: {{ task.progress }}%</p>
+                        <a href="/{{task.id}}/update" class="btn btn-primary btn-sm">編集</a>
+                        <a href="/{{task.id}}/delete" class="btn btn-danger btn-sm">削除</a>
+                        <a href="/{{task.id}}/complete" class="btn btn-success  btn-sm">完了</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+    <h3>友人一覧</h3>
+<div class="container mt-5">
+    <div class="row">
+        {% for friend in all_friends %}
+                {% if friend in friend_tasks %}
+                <div class="col-md-4 mb-4">
+                    <div class="card sticky-note">
+                        <div class="card-body">
+                            {% if friend_user %}
+                            <h4 class="card-title">{{ friend_user.nickname }}さん</h4>
+                            {% endif %}
+                            <h5 class="card-title">{{ friend_tasks[friend].taskname }}</h5>
+                            <p class="card-text">期限: {{ friend_tasks[friend].deadline }}</p>
+                            <p class="card-text">優先度: {{ friend_tasks[friend].priority }}</p>
+                            <p class="card-text">進捗: {{ friend_tasks[friend].progress }}%</p>
+                            <a href="{{ url_for('friend_tasks', username=friend) }}" class="btn btn-primary btn-sm">すべてのタスクを見る</a>
+                        </div>
+                    </div>
+                </div> 
+                {% else %}
+                    <p>タスクはありません。</p>
+                {% endif %}
+        {% else %}
+            <p>友人はいません。</p>
+        {% endfor %}
+{% endblock %}
+    </div>
+</div>

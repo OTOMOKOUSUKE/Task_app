@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>リクエストの一覧</h2>
+
+<div class="container mt-5">
+    <div class="row">
+        {% for request in requests %}
+        {% if request.target_user_id == current_user.username %}
+            <div class="col-md-4 mb-4">
+                <div class="card sticky-note">
+                    <div class="card-body">
+                        <h2 class="card-text">送信者: {{ request.requester_id }}</h2>
+                        <p class="card-text">時刻: {{ request.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                        {% if request.status == '保留' %}
+                            <p class="card-text">承認状況: {{ request.status }}</p>
+                            <form method="POST" action="{{ url_for('handle_request') }}" style="display:inline;">
+                                <input type="hidden" name="request_id" value="{{ request.id }}">
+                                <button type="submit" name="action" value="approve" class="btn btn-primary btn-sm">承認</button>
+                                <button type="submit" name="action" value="deny" class="btn btn-secondary btn-sm">拒否</button>
+                            </form>
+                            
+                        {% else %}
+                            <p class="card-text">承認状況: {{ request.status }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

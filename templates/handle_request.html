@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>リクエストの詳細</h2>
+
+<p><strong>リクエスト送信者:</strong> {{ requester.username }}</p>
+<p><strong>リクエストの日時:</strong> {{ request.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+
+<form method="POST" action="{{ url_for('/requests', request_id=request.id) }}">
+    <button type="submit" name="action" value="approve">承認</button>
+    <button type="submit" name="action" value="deny">拒否</button>
+</form>
+
+{% endblock %}

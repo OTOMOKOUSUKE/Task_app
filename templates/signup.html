@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <h1 class="text-center mb-4">TaskTamer</h1>
+            <h2 class="text-center mb-4">ユーザー登録</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="ユーザー名を入力">
+                </div>
+                <div class="form-group">
+                    <label for="nickname">ニックネーム</label>
+                    <input type="text" class="form-control" id="nickname" name="nickname" placeholder="ニックネームを設定">
+                </div>
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="パスワードを入力">
+                </div>
+                <div class="form-group">
+                    <label for="password_check">パスワード（確認用）</label>
+                    <input type="password" class="form-control mb-2" id="password_check" name="password_check" placeholder="もう一度パスワードを入力">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block w-100">新規登録</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
